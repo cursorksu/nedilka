@@ -373,10 +373,14 @@ h1 span{
 .flex-item [class*=" icon-"].active{
     color: rgba(254,194,98,1);
 }
+
 .articles{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+.article {
+    display: block;
 }
 .articles_item{
     flex-basis: 49%;
