@@ -228,7 +228,7 @@ p {
     bottom: 18px;
     left: 5px;
     width: 50%;
-    height: 20%;
+    height: 30px;
     z-index: 0;
     max-width: 300px;
     -webkit-box-shadow: 0 20px 5px rgba(0, 0, 0, 0.7);
@@ -379,8 +379,25 @@ h1 span{
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.article .articles_text{
+    font-size: 18px;
+    line-height: 1.4;
+}
 .article {
     display: block;
+}
+.article .articles_wrapper{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.article ul{
+     margin-top: 12px;
+     margin-bottom: 12px;
+     margin-left: 46px;
+ }
+.article li{
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 .articles_item{
     flex-basis: 49%;
@@ -389,6 +406,10 @@ h1 span{
     box-sizing: border-box;
     margin: 0;
     margin-bottom: 26px;
+}
+.article .articles_item{
+    width: 100%;
+    flex-basis: 100%;
 }
 .articles_wrapper{
     width: 100%;
@@ -762,7 +783,7 @@ h1 span{
     font-weight: 700;
     font-size: 14px;
 }
-.lessons_list{
+.sidebar + section{
     width: calc(100% - 320px);
     flex-basis: calc(100% - 320px);
 }
