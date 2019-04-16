@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html  lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spiner</title>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700|Sigmar+One&amp;subset=cyrillic" rel="stylesheet">    <link rel="stylesheet"  type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet"  type="text/css" href="css/slick.css"/>
+    <link rel="stylesheet"  type="text/css" href="fonts/icomoon/style.css"/>
+    <link rel="stylesheet"  type="text/css" href="css/rem.css"/>
+
+<body>
+<div class="wrapper">
+    <section class="game spiner">
+        <div align="center">
+            <div class="power_controls">
+                <ul class="power">
+                    <li id="pw1" onClick="powerSelected(1);">Low</li>
+                    <li id="pw2" onClick="powerSelected(2);">Med</li>
+                    <li id="pw3" onClick="powerSelected(3);">High</li>
+                </ul>
+                <button id="spin_button"   onClick="
+                var newVolume = 1;
+                $(audioIgra).animate({volume: newVolume}, 0);startSpin();
+" >Крути<span ></span></button>
+                <a id="spin_next" onclick="audioOles.play()"  href="#">крутити ще...</a>
+            <div class="point-arrow"></div>
+            </div>
+
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+
+                    <div class="circle-group">
+                        <div class="circle_1"></div>
+                        <div class="circle_2"></div>
+                        <ul class="light">
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                            <li class="item-light"></li>
+                        </ul>
+                    </div>
+                    <td  class="the_wheel" align="center" valign="center">
+                        <canvas id="canvas" width="650" height="650">
+                            <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                        </canvas>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+
+    <section class="pop-up pop-win">
+        <div class="pop-up-container">
+            <div onclick="
+            var newVolume = 0;
+            $(audioIgra).animate({volume: newVolume}, 2000);
+            setTimeout(function() {
+              audioIgra.pause();
+              audioIgra.currentTime = 0;
+              resetWheel(); return false;
+            }, 2000)
+            " class="btn btn-close"></div>
+            <div class="pop-up-content">
+                <p>На барабані випав номер</p>
+                <p class="win-text">12</p>
+                <audio id="myIgra">
+                    <source src="images/rem/igra_1.mp3">
+                </audio>
+            </div>
+        </div>
+    </section>
+
+    <!--<section class="pop-up pashalka">-->
+        <!--<div class="pop-up-container">-->
+            <!--<div class="btn btn-close"></div>-->
+            <!--<div class="pop-up-content">-->
+                <!--<p><span>Error!</span><br> 404</p>-->
+                <!--<img src="images/rem/oles.png" alt="oles">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
+
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="js/slick.min.js"></script>
+<script type="text/javascript" src="js/TweenMax.min.js"></script>
+<script type="text/javascript" src="js/Winwheel.js"></script>
+<script>
+    function FadeIn(saund) {
+
+        var vol = $.global.volume;
+
+        if ( vol < 100 )
+        {
+            sound.volume = (vol / 100);
+            $.global.volume = $.global.volume + 10;
+            setInterval(function() { FadeIn() }, 1200);
+        }
+
+    }
+
+
+    $('#spin_next').on('click', function () {
+       $('.pashalka').addClass('active');
+    });
+    // Create new wheel object specifying the  prameters at creation time.
+    let theWheel = new Winwheel({
+        'numSegments'  : 50,     // Specify number of segments.
+        'outerRadius'  : 280,   // Set outer radius so wheel fits inside the background.
+        'textFontSize' : 18,    // Set font size as desired.
+        'innerRadius'    : 60,
+        'textFillStyle' : 'rgba(255,255,255,1)',
+        'textOrientation' : 'curved',
+        'textAlignment' : 'outer',
+        'textFontFamily' : 'deco',
+        'lineWidth'   : 1,
+        'segments'     :        // Define segments including colour and text.
+            [
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)',  'text' : '0'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '1'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '2'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '3'},
+                {'fillStyle' : '#A92232', 'strokeStyle' : 'rgba(255,255,255,0.4)','text' : '4'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '5'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '6'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '7'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '8'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '9'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '10'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '11'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '12'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '13'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '14'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '15'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '16'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '17'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '18'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '19'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '20'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '21'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '22'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '23'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '24'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '25'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '26'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '27'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '28'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '29'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '30'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '31'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '32'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '33'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '34'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '35'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '36'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '37'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '38'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '39'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '40'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '41'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '42'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '43'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '44'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '45'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '46'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '47'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '48'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '49'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '50'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '51'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '52'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '53'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '54'},
+                {'fillStyle' : '#F79E05','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '55'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '56'},
+                {'fillStyle' : '#F79E05', 'strokeStyle' : 'rgba(255,255,255,0.4)','text' : '57'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '58'},
+                {'fillStyle' : '#F79E05', 'strokeStyle' : 'rgba(255,255,255,0.4)','text' : '59'},
+                {'fillStyle' : '#A92232','strokeStyle' : 'rgba(255,255,255,0.4)', 'text' : '60'},
+            ],
+        'animation' :           // Specify the animation to use.
+            {
+                'type'     : 'spinToStop',
+                'duration' : 8,     // Duration in seconds.
+                'spins'    : 6,     // Number of complete spins.
+                'callbackSound' : playSound,
+                'callbackFinished' : alertPrize
+            }
+    });
+    let audioOles = new Audio('js/full.mp3');
+    let audio = new Audio('js/tick.mp3');
+    function playSound()
+    {
+        // Stop and rewind the sound (stops it if already playing).<font></font>
+        audio.pause();
+        audio.currentTime = 0;
+        // Play the sound.<font></font>
+        audio.play();
+    }
+
+
+    // Vars used by the code in this page to do power controls.
+    let wheelPower    = 0;
+    let wheelSpinning = false;
+
+    // -------------------------------------------------------
+    // Function to handle the onClick on the power buttons.
+    // -------------------------------------------------------
+    function powerSelected(powerLevel)
+    {
+        // Ensure that power can't be changed while wheel is spinning.
+        if (wheelSpinning == false) {
+            // Reset all to grey incase this is not the first time the user has selected the power.
+            document.getElementById('pw1').className = "";
+            document.getElementById('pw2').className = "";
+            document.getElementById('pw3').className = "";
+
+            // Now light up all cells below-and-including the one selected by changing the class.
+            if (powerLevel >= 1) {
+                document.getElementById('pw1').className = "pw1";
+            }
+            if (powerLevel >= 2) {
+                document.getElementById('pw2').className = "pw2";
+            }
+            if (powerLevel >= 3) {
+                document.getElementById('pw3').className = "pw3";
+            }
+            wheelPower = powerLevel;
+            document.getElementById('spin_button').src = "spin_on.png";
+            document.getElementById('spin_button').className = "clickable";
+        }
+    }
+    let audioIgra = new Audio('images/rem/igra.mp3');
+
+    function startSpin()
+    {
+        // Ensure that spinning can't be clicked again while already running.
+        if (wheelSpinning == false) {
+            // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+            // to rotate with the duration of the animation the quicker the wheel spins.
+            if (wheelPower == 1) {
+                theWheel.animation.spins = 3;
+            } else if (wheelPower == 2) {
+                theWheel.animation.spins = 8;
+            } else if (wheelPower == 3) {
+                theWheel.animation.spins = 15;
+            }
+
+            audioIgra.play();
+            // Disable the spin button so can't click again while wheel is spinning.
+            document.getElementById('spin_button').src       = "spin_off.png";
+            document.getElementById('spin_button').className = "";
+
+            // Begin the spin animation by calling startAnimation on the wheel object.
+            theWheel.startAnimation();
+
+            // Set to true so that power can't be changed and spin button re-enabled during
+            // the current animation. The user will have to reset before spinning again.
+            wheelSpinning = true;
+        }
+    }
+
+    // -------------------------------------------------------
+    // Function for reset button.
+    // -------------------------------------------------------
+    function resetWheel()
+    {
+        theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+        theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+        theWheel.draw();                // Call draw to render changes to the wheel.
+
+        document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
+        document.getElementById('pw2').className = "";
+        document.getElementById('pw3').className = "";
+        wheelSpinning = false;
+    }
+
+
+    function alertPrize(indicatedSegment)
+    {
+        if(indicatedSegment.text){
+            $('.pop-win').addClass('active');
+            $('.pop-win .win-text').text(indicatedSegment.text);
+        }
+    }
+
+</script>
+<script type="text/javascript" src="js/rem.js"></script>
+</body>
+</html>
