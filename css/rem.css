@@ -598,6 +598,7 @@ section {
     border-radius: 15px;
     position: relative;
     -o-transition: 1s;
+    overflow: hidden;
     transition: 1s;
     transform-style: preserve-3d;
     -webkit-transition: 1s;
