@@ -490,6 +490,16 @@ h1 span{
     width: auto;
     object-fit: cover;
  }
+.article .article_img {
+    width: 70%;
+    height: 300px;
+    text-align: center;
+}
+.article .article_img img {
+    height: 300px;
+    object-fit: contain;
+}
+
 .btn_panel{
     width: 40px;
     height: 40px;
@@ -783,6 +793,7 @@ h1 span{
     font-weight: 700;
     font-size: 14px;
 }
+.lessons_list,
 .sidebar + section{
     width: calc(100% - 320px);
     flex-basis: calc(100% - 320px);
