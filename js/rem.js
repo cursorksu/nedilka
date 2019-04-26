@@ -585,5 +585,24 @@ $('.js-chans').on('click', function(event) {
 
 // Игральные кости
 
+
+    $('.photos-slider').slick({
+        slidesToShow: 4,
+        dots: false,
+        infinite: true,
+        speed: 1200,
+        autoplaySpeed: 3000,
+        autoplay: true,
+        pauseOnHover: true,
+        swipeToSlide: true,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                }
+            }
+        ]
+    });
 });
 
