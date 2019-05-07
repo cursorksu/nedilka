@@ -32,7 +32,8 @@
     margin: 0;
     font-size: 18px;
     line-height: 1.2;
-    background: url("../images/rem/slide/sl1.jpg");
+    background: #300;
+    /*background: url("../images/rem/slide/sl1.jpg");*/
     background-repeat: repeat-y;
     -webkit-background-size: 100%;
     background-size: 100%;
@@ -98,13 +99,29 @@ p {
     width: calc(100% - 40px);
 }
 .search{
-    flex-basis: calc(100% - 298px);
+    flex-basis: calc(100% - 346px);
     position: relative;
 }
 .search .btn_panel{
     position: absolute;
     right: 0;
     top: 2px;
+}
+.num-mess{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    background: #FF3908;
+    border: 1px solid #fff;
+
 }
 .search .btn_panel span{
     font-size: 20px;
@@ -1301,7 +1318,7 @@ h1 span{
     position: relative;
 }
 .black-line.community{
-    background: url("../images/rem/slide/sl30.jpg");
+    background: url("../images/rem/slide/sl6.jpg");
     -webkit-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1474,12 +1491,13 @@ h1 span{
     -webkit-background-size: contain;
     background-size: contain;
     z-index: -1;
+    transition: all 0.8s ease-in-out;
 }
 .community-img::before{
-    top: -30px;
-    right: -100px;
-    width: 150px;
-    height: 160px;
+    top: -20px;
+    right: -80px;
+    width: 130px;
+    height: 120px;
     opacity: .4;
     transform: rotate(230deg);
 
@@ -1492,6 +1510,12 @@ h1 span{
     opacity: .3;
     transform: rotate(40deg);
 
+}
+.community-item:hover .community-img::before{
+    transform: rotate(230deg) scale(0.8);
+}
+.community-item:hover .community-img::after{
+    transform: rotate(40deg) scale(0.8);
 }
 .community-item img {
     width: auto;
